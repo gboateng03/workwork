@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-react-helmet="true">IoTeX - Building the Connected World</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.font.im/css?family=Noto+Sans" rel="stylesheet">
+  <link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      transition-delay: 111111s;
+      transition: color 11111s ease-out, background-color 111111s ease-out;
+    }
+
+    #termly-code-snippet-support {
+      background: #000 !important;
+    }
+
+    #termly-code-snippet-support .t-consentPrompt {
+      background: url('/images/email_popup.png') !important;
+      z-index: 1000000 !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+    }
+
+    @media screen and (max-width: 768px) {
+
+      #termly-code-snippet-support .t-declineButton,
+      .t-acceptAllButton {
+        width: 150px !important;
+      }
+    }
+
+    #termly-code-snippet-support .t-preference-button,
+    .t-declineButton {
+      border-color: #44FFB2 !important;
+      font-weight: 500 !important;
+      background: transparent !important;
+      color: #fff !important;
+    }
+
+    #termly-code-snippet-support .t-acceptAllButton {
+      background: linear-gradient(92.18deg, #44FFB2 19.21%, #00D3DC 105.06%) !important;
+      border: none !important;
+      font-weight: 500 !important;
+    }
+  </style>
+  <!-- termly -->
+  <!-- <script type="text/javascript" src="https://app.termly.io/embed.min.js" data-auto-block="on"
+    data-website-uuid="0c0be776-2c41-480a-894c-49f3d4d02b90"></script> -->
+  <!-- Google Analytics data-categories="analytics" -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111756489-1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KCWXS4P');</script>
+
+  <title></title>
+</head>
+
+<body>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+  <script>
+
+   
+    // mailchimp
+    !function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/76695f0cff963129d31cdaae6/b18bd1136e3ab4e401c058cc7.js");
+
+    //  Hotjar Tracking Code for iotex.io
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 2494554, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+
+    // Global site tag (gtag.js) - Google Analytics
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-111756489-1');
+
+    // check termly accept
+    function getUpdatedCookieWhitelistByTermly(data) {
+      if (data.uuid) {
+        window.localStorage.setItem('uuid', data.uuid)
+        // decline > 12 hours show again
+        const hjViewportId = window.sessionStorage.getItem('hjViewportId')
+        if (window.localStorage.getItem('_hjid') == null && hjViewportId === null) {
+          const lastTime = Number(window.localStorage.getItem('lastActiveTime'))
+          if (getInervalHour(lastTime) > 12) {
+            window.localStorage.clear()
+            window.sessionStorage.clear()
+            window.location.reload()
+          }
+        }
+      } else {
+        window.localStorage.setItem('lastActiveTime', new Date().getTime())
+      }
+    }
+
+    // diff cookie decline time
+    function getInervalHour(startDate) {
+      const now = new Date()
+      const ms = now.getTime() - startDate;
+      if (ms < 0) return 0;
+      return Math.floor(ms / 1000 / 60 / 60);
+    }
+  </script>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCWXS4P" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+</body>
+
+</html>

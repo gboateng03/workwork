@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "paths": {
+      "@/store/*": ["store/*"],
+      "@/components/*": ["components/*"],
+      "@/utils/*": ["utils/*"],
+      "@/lib/*": ["lib/*"],
+      "@/assets/*": ["assets/*"],
+      "@/pages/*": ["pages/*"]
+    }
+  },
+}

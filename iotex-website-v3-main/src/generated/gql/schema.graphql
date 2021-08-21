@@ -1,0 +1,733 @@
+schema {
+  query: query_root
+  subscription: subscription_root
+}
+
+"""
+whether this query should be cached (Hasura Cloud only)
+"""
+directive @cached(
+  """
+  measured in seconds
+  """
+  ttl: Int! = 60
+
+  """
+  refresh the cache entry
+  """
+  refresh: Boolean! = false
+) on QUERY
+
+"""
+Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'.
+"""
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+"""
+columns and relationships of "KV"
+"""
+type KV {
+  id: Int!
+  key: String!
+  value: String!
+}
+
+"""
+aggregated selection of "KV"
+"""
+type KV_aggregate {
+  aggregate: KV_aggregate_fields
+  nodes: [KV!]!
+}
+
+"""
+aggregate fields of "KV"
+"""
+type KV_aggregate_fields {
+  avg: KV_avg_fields
+  count(columns: [KV_select_column!], distinct: Boolean): Int!
+  max: KV_max_fields
+  min: KV_min_fields
+  stddev: KV_stddev_fields
+  stddev_pop: KV_stddev_pop_fields
+  stddev_samp: KV_stddev_samp_fields
+  sum: KV_sum_fields
+  var_pop: KV_var_pop_fields
+  var_samp: KV_var_samp_fields
+  variance: KV_variance_fields
+}
+
+"""
+aggregate avg on columns
+"""
+type KV_avg_fields {
+  id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "KV". All fields are combined with a logical 'AND'.
+"""
+input KV_bool_exp {
+  _and: [KV_bool_exp!]
+  _not: KV_bool_exp
+  _or: [KV_bool_exp!]
+  id: Int_comparison_exp
+  key: String_comparison_exp
+  value: String_comparison_exp
+}
+
+"""
+aggregate max on columns
+"""
+type KV_max_fields {
+  id: Int
+  key: String
+  value: String
+}
+
+"""
+aggregate min on columns
+"""
+type KV_min_fields {
+  id: Int
+  key: String
+  value: String
+}
+
+"""
+Ordering options when selecting data from "KV".
+"""
+input KV_order_by {
+  id: order_by
+  key: order_by
+  value: order_by
+}
+
+"""
+select columns of table "KV"
+"""
+enum KV_select_column {
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  key
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+aggregate stddev on columns
+"""
+type KV_stddev_fields {
+  id: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type KV_stddev_pop_fields {
+  id: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type KV_stddev_samp_fields {
+  id: Float
+}
+
+"""
+aggregate sum on columns
+"""
+type KV_sum_fields {
+  id: Int
+}
+
+"""
+aggregate var_pop on columns
+"""
+type KV_var_pop_fields {
+  id: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type KV_var_samp_fields {
+  id: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type KV_variance_fields {
+  id: Float
+}
+
+"""
+column ordering options
+"""
+enum order_by {
+  """
+  in ascending order, nulls last
+  """
+  asc
+
+  """
+  in ascending order, nulls first
+  """
+  asc_nulls_first
+
+  """
+  in ascending order, nulls last
+  """
+  asc_nulls_last
+
+  """
+  in descending order, nulls first
+  """
+  desc
+
+  """
+  in descending order, nulls first
+  """
+  desc_nulls_first
+
+  """
+  in descending order, nulls last
+  """
+  desc_nulls_last
+}
+
+type query_root {
+  """
+  fetch data from the table: "KV"
+  """
+  KV(
+    """
+    distinct select on columns
+    """
+    distinct_on: [KV_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [KV_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: KV_bool_exp
+  ): [KV!]!
+
+  """
+  fetch aggregated fields from the table: "KV"
+  """
+  KV_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [KV_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [KV_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: KV_bool_exp
+  ): KV_aggregate!
+
+  """
+  fetch data from the table: "KV" using primary key columns
+  """
+  KV_by_pk(id: Int!): KV
+
+  """
+  fetch data from the table: "RewardRecord"
+  """
+  RewardRecord(
+    """
+    distinct select on columns
+    """
+    distinct_on: [RewardRecord_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [RewardRecord_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: RewardRecord_bool_exp
+  ): [RewardRecord!]!
+
+  """
+  fetch aggregated fields from the table: "RewardRecord"
+  """
+  RewardRecord_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [RewardRecord_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [RewardRecord_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: RewardRecord_bool_exp
+  ): RewardRecord_aggregate!
+
+  """
+  fetch data from the table: "RewardRecord" using primary key columns
+  """
+  RewardRecord_by_pk(id: Int!): RewardRecord
+}
+
+"""
+columns and relationships of "RewardRecord"
+"""
+type RewardRecord {
+  address: String!
+  burndropReward: String
+  date: timestamp!
+  id: Int!
+  stakingReward: String
+}
+
+"""
+aggregated selection of "RewardRecord"
+"""
+type RewardRecord_aggregate {
+  aggregate: RewardRecord_aggregate_fields
+  nodes: [RewardRecord!]!
+}
+
+"""
+aggregate fields of "RewardRecord"
+"""
+type RewardRecord_aggregate_fields {
+  avg: RewardRecord_avg_fields
+  count(columns: [RewardRecord_select_column!], distinct: Boolean): Int!
+  max: RewardRecord_max_fields
+  min: RewardRecord_min_fields
+  stddev: RewardRecord_stddev_fields
+  stddev_pop: RewardRecord_stddev_pop_fields
+  stddev_samp: RewardRecord_stddev_samp_fields
+  sum: RewardRecord_sum_fields
+  var_pop: RewardRecord_var_pop_fields
+  var_samp: RewardRecord_var_samp_fields
+  variance: RewardRecord_variance_fields
+}
+
+"""
+aggregate avg on columns
+"""
+type RewardRecord_avg_fields {
+  id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "RewardRecord". All fields are combined with a logical 'AND'.
+"""
+input RewardRecord_bool_exp {
+  _and: [RewardRecord_bool_exp!]
+  _not: RewardRecord_bool_exp
+  _or: [RewardRecord_bool_exp!]
+  address: String_comparison_exp
+  burndropReward: String_comparison_exp
+  date: timestamp_comparison_exp
+  id: Int_comparison_exp
+  stakingReward: String_comparison_exp
+}
+
+"""
+aggregate max on columns
+"""
+type RewardRecord_max_fields {
+  address: String
+  burndropReward: String
+  date: timestamp
+  id: Int
+  stakingReward: String
+}
+
+"""
+aggregate min on columns
+"""
+type RewardRecord_min_fields {
+  address: String
+  burndropReward: String
+  date: timestamp
+  id: Int
+  stakingReward: String
+}
+
+"""
+Ordering options when selecting data from "RewardRecord".
+"""
+input RewardRecord_order_by {
+  address: order_by
+  burndropReward: order_by
+  date: order_by
+  id: order_by
+  stakingReward: order_by
+}
+
+"""
+select columns of table "RewardRecord"
+"""
+enum RewardRecord_select_column {
+  """
+  column name
+  """
+  address
+
+  """
+  column name
+  """
+  burndropReward
+
+  """
+  column name
+  """
+  date
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  stakingReward
+}
+
+"""
+aggregate stddev on columns
+"""
+type RewardRecord_stddev_fields {
+  id: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type RewardRecord_stddev_pop_fields {
+  id: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type RewardRecord_stddev_samp_fields {
+  id: Float
+}
+
+"""
+aggregate sum on columns
+"""
+type RewardRecord_sum_fields {
+  id: Int
+}
+
+"""
+aggregate var_pop on columns
+"""
+type RewardRecord_var_pop_fields {
+  id: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type RewardRecord_var_samp_fields {
+  id: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type RewardRecord_variance_fields {
+  id: Float
+}
+
+"""
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+
+  """
+  does the column match the given case-insensitive pattern
+  """
+  _ilike: String
+  _in: [String!]
+
+  """
+  does the column match the given POSIX regular expression, case insensitive
+  """
+  _iregex: String
+  _is_null: Boolean
+
+  """
+  does the column match the given pattern
+  """
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+
+  """
+  does the column NOT match the given case-insensitive pattern
+  """
+  _nilike: String
+  _nin: [String!]
+
+  """
+  does the column NOT match the given POSIX regular expression, case insensitive
+  """
+  _niregex: String
+
+  """
+  does the column NOT match the given pattern
+  """
+  _nlike: String
+
+  """
+  does the column NOT match the given POSIX regular expression, case sensitive
+  """
+  _nregex: String
+
+  """
+  does the column NOT match the given SQL regular expression
+  """
+  _nsimilar: String
+
+  """
+  does the column match the given POSIX regular expression, case sensitive
+  """
+  _regex: String
+
+  """
+  does the column match the given SQL regular expression
+  """
+  _similar: String
+}
+
+type subscription_root {
+  """
+  fetch data from the table: "KV"
+  """
+  KV(
+    """
+    distinct select on columns
+    """
+    distinct_on: [KV_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [KV_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: KV_bool_exp
+  ): [KV!]!
+
+  """
+  fetch aggregated fields from the table: "KV"
+  """
+  KV_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [KV_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [KV_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: KV_bool_exp
+  ): KV_aggregate!
+
+  """
+  fetch data from the table: "KV" using primary key columns
+  """
+  KV_by_pk(id: Int!): KV
+
+  """
+  fetch data from the table: "RewardRecord"
+  """
+  RewardRecord(
+    """
+    distinct select on columns
+    """
+    distinct_on: [RewardRecord_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [RewardRecord_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: RewardRecord_bool_exp
+  ): [RewardRecord!]!
+
+  """
+  fetch aggregated fields from the table: "RewardRecord"
+  """
+  RewardRecord_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [RewardRecord_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [RewardRecord_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: RewardRecord_bool_exp
+  ): RewardRecord_aggregate!
+
+  """
+  fetch data from the table: "RewardRecord" using primary key columns
+  """
+  RewardRecord_by_pk(id: Int!): RewardRecord
+}
+
+scalar timestamp
+
+"""
+Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'.
+"""
+input timestamp_comparison_exp {
+  _eq: timestamp
+  _gt: timestamp
+  _gte: timestamp
+  _in: [timestamp!]
+  _is_null: Boolean
+  _lt: timestamp
+  _lte: timestamp
+  _neq: timestamp
+  _nin: [timestamp!]
+}
